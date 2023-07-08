@@ -95,8 +95,6 @@ public class PaymentUiTests {
         assertNull(orders.get(0).getCredit_id());
     }
 
-    "1. Поле Номер карты:"
-
     @Story("№2.1.1 Оставление поля пустым, остальные поля заполнены валидно")
     @Severity(SeverityLevel.NORMAL)
     @Test
@@ -155,7 +153,7 @@ public class PaymentUiTests {
     @Test
     public void shouldVisibleNotificationWithInvalidSymbolsInNumber() {
         cardData = DataHelper.getValidApprovedCard();
-        var number = DataHelper.generateInvalidCardNumberWith16RandomSymbols()
+        var number = DataHelper.generateInvalidCardNumberWith16RandomSymbols();
         var matchesNumber = "";
 
         tripForm = tripCard.clickPayButton();
@@ -163,8 +161,6 @@ public class PaymentUiTests {
         tripForm.matchesByInsertValue(matchesNumber, cardData.getMonth(), cardData.getYear(), cardData.getHolder(), cardData.getCvc());
         tripForm.assertNumberFieldIsEmptyValue();
     }
-
-    "2. Поле Месяц:"
 
     @Story("№2.2.1 Оставление поля пустым, остальные поля заполнены валидно")
     @Severity(SeverityLevel.NORMAL)
@@ -266,7 +262,6 @@ public class PaymentUiTests {
         tripForm.assertMonthFieldIsInvalidValue();
     }
 
-    "3. Поле Год:"
     @Story("№2.3.1 Оставление поля пустым")
     @Severity(SeverityLevel.NORMAL)
     @Test
@@ -308,8 +303,6 @@ public class PaymentUiTests {
         tripForm.matchesByInsertValue(cardData.getNumber(), cardData.getMonth(), matchesYear, cardData.getHolder(), cardData.getCvc());
         tripForm.assertYearFieldIsInvalidValue();
     }
-
-    "4. Поле Владелец:"
 
     @Story("№2.4.1 Оставление поля пустым, остальные поля заполнены валидно")
     @Severity(SeverityLevel.NORMAL)
@@ -395,8 +388,6 @@ public class PaymentUiTests {
         tripForm.assertHolderFieldIsEmptyValue();
     }
 
-    "5. Поле CVV:""
-
     @Story("№2.5.1 Оставление поля пустым, остальные поля заполнены валидно")
     @Severity(SeverityLevel.NORMAL)
     @Test
@@ -425,7 +416,7 @@ public class PaymentUiTests {
         tripForm.assertCvcFieldIsInvalidValue();
     }
 
-    @Story("№2.5.3 Заполнение поля "CVC/CVV" 4 рандомными цифрами, остальные поля заполнены валидно")
+    @Story("№2.5.3 Заполнение поля 4 рандомными цифрами, остальные поля заполнены валидно")
     @Severity(SeverityLevel.MINOR)
     @Test
     public void shouldSuccessfulWith4DigitsInCVC() {
@@ -439,21 +430,7 @@ public class PaymentUiTests {
         tripForm.assertBuyOperationIsSuccessful();
     }
 
-    @Story("№2.5.4 Заполнение поля \"CVC/CVV\" 3 рандомными буквами, остальные поля заполнены валидно")
-    @Severity(SeverityLevel.MINOR)
-    @Test
-    public void shouldVisibleNotificationWithInvalidSymbolsInCVC() {
-        cardData = DataHelper.getValidApprovedCard();
-        var cvc = DataHelper.generateInvalidCVCWithRandomSymbols();
-        var matchesCvc = "";
-
-        tripForm = tripCard.clickPayButton();
-        tripForm.insertingValueInForm(cardData.getNumber(), cardData.getMonth(), cardData.getYear(), cardData.getHolder(), cvc);
-        tripForm.matchesByInsertValue(cardData.getNumber(), cardData.getMonth(), cardData.getYear(), cardData.getHolder(), matchesCvc);
-        tripForm.assertCvcFieldIsEmptyValue();
-    }
-
-    @Story("№2.5.5 Заполнение поля "CVC/CVV" 3 рандомными спецсимволами, остальные поля заполнены валидно")
+    @Story("№2.5.4/№2.5.5 Заполнение поля \"CVC/CVV\" 3 рандомными буквами/спецсимволами, остальные поля заполнены валидно")
     @Severity(SeverityLevel.MINOR)
     @Test
     public void shouldVisibleNotificationWithInvalidSymbolsInCVC() {
