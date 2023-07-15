@@ -66,8 +66,7 @@ public class TripFormPage {
     public void assertBuyOperationIsSuccessful() {
         successNotification.should(Condition.visible, Duration.ofSeconds(15));
         successNotification.should(Condition.cssClass("notification_visible"));
-        successNotification.$x("./div[@class='notification__title']").should(Condition.text("Успешно"));
-        successNotification.$x("./div[@class='notification__content']").should(Condition.text("Операция одобрена Банком."));
+        successNotification.$x(".notification_status_ok").should(Condition.text("Успешно" "Операция одобрена Банком."));
         successCloseButton.click();
         successNotification.should(Condition.hidden);
     }
@@ -75,8 +74,7 @@ public class TripFormPage {
     public void assertBuyOperationWithErrorNotification() {
         errorNotification.should(Condition.visible, Duration.ofSeconds(15));
         errorNotification.should(Condition.cssClass("notification_visible"));
-        errorNotification.$x("/div[@class='notification__title']").should(Condition.text("Ошибка"));
-        errorNotification.$x("/div[@class='notification__content']").should(Condition.text("Ошибка! Банк отказал в проведении операции."));
+        errorNotification.$x(".notification_status_error").should(Condition.text("Ошибка" "Ошибка! Банк отказал в проведении операции."));
         errorCloseButton.click();
         errorNotification.should(Condition.hidden);
     }
