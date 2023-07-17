@@ -40,11 +40,11 @@
    `docker-compose up -d`
 1. Запустить приложение:
 
-   `java -jar .\artifacts\aqa-shop\aqa-shop.jar --spring.datasource.url=jdbc:mysql://localhost:3306/app`
+   `java -jar .\artifacts\aqa-shop\aqa-shop.jar "--spring.datasource.url=jdbc:postgresql://localhost:5432/app"`
 1. Открыть второй терминал
 1. Запустить тесты:
 
-   `.\gradlew clean test -DdbUrl=jdbc:mysql://localhost:3306/app`
+   `.\gradlew clean test "-DdbUrl=jdbc:mysql://localhost:3306/app"`
 1. Создать отчёт Allure и открыть в браузере
 
    `.\gradlew allureServe`
