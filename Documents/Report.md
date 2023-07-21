@@ -17,13 +17,13 @@
 
 Всего было проведено 54 автотеста. Общий процент успешных тестов равен 33.33%.
 
-C:\Users\Elwir\IdeaProjects\Diplom-QA-57\Documents\images\1.jpg
+https://github.com/ElMen97/Diplom-QA-57/blob/b0435f891b16cd552de158c54108ecb734b47bdd/Documents/images/1.jpg
 
 Результаты прогона тестов не зависят от типа подключенной БД, поэтому представлен единый отчёт по тестам.
 
 ### Результаты тестов по тестируемому функционалу:
 
-C:\Users\Elwir\IdeaProjects\Diplom-QA-57\Documents\images\2.jpg
+https://github.com/ElMen97/Diplom-QA-57/blob/b0435f891b16cd552de158c54108ecb734b47bdd/Documents/images/2.jpg
 
 
 ## **Общие рекомендации**
