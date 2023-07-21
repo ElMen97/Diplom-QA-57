@@ -27,7 +27,10 @@ public class TripFormPage {
     private static final SelenideElement cvcInput = cvcLabel.$x(".//input");
     private static final SelenideElement continuousButton = form.$x(".//span[text()='Продолжить']//ancestor::button");
     private static final SelenideElement successNotification = $x("//div[contains(@class, 'notification_status_ok')]");
+    private static final SelenideElement successCloseButton = successNotification.$x("./button");
     private static final SelenideElement errorNotification = $x("//div[contains(@class, 'notification_status_error')]");
+    private static final SelenideElement errorCloseButton = errorNotification.$x("./button");
+
 
     public TripFormPage() {
         dailyTripCard.should(visible);
@@ -61,17 +64,27 @@ public class TripFormPage {
         assertEquals(cvc, cvcInput.getValue());
     }
 
-    public void BuyOperationIsSuccessful() {
-        successNotification.shouldBe(visible, Duration.ofSeconds(11));
+    public void assertBuyOperationIsSuccessful() {
+        successNotification.should(Condition.visible, Duration.ofSeconds(15));
+        successNotification.should(Condition.cssClass("notification_visible"));
+        successNotification.$x("./div[@class='notification__title']").should(Condition.text("Успешно"));
+        successNotification.$x("./div[@class='notification__content']").should(Condition.text("Операция одобрена Банком."));
+        successCloseButton.click();
+        successNotification.should(Condition.hidden);
     }
 
-    public void BuyOperationWithErrorNotification() {
-        errorNotification.shouldBe(visible, Duration.ofSeconds(11));
+    public void assertBuyOperationWithErrorNotification() {
+        errorNotification.should(Condition.visible, Duration.ofSeconds(15));
+        errorNotification.should(Condition.cssClass("notification_visible"));
+        errorNotification.$x("/div[@class='notification__title']").should(Condition.text("Ошибка"));
+        errorNotification.$x("/div[@class='notification__content']").should(Condition.text("Ошибка! Банк отказал в проведении операции."));
+        errorCloseButton.click();
+        errorNotification.should(Condition.hidden);
     }
 
     public void assertNumberFieldIsEmptyValue() {
         numberLabel.should(Condition.cssClass("input_invalid")).shouldNot(Condition.cssClass("input_has-value"));
-        numberLabel.$x(".//span[@class='input__sub']").should(visible, Condition.text("Поле обязательно для заполнения"));
+        numberLabel.$x(".//span[@class='input__sub']").should(Condition.visible, Condition.text("Поле обязательно для заполнения"));
     }
 
     public void assertNumberFieldIsInvalidValue() {

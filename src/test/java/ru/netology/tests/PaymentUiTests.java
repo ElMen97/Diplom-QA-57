@@ -56,7 +56,7 @@ public class PaymentUiTests {
         tripForm = tripCard.clickPayButton();
         tripForm.insertingValueInForm(cardData.getNumber(), cardData.getMonth(), cardData.getYear(), cardData.getHolder(), cardData.getCvc());
         tripForm.matchesByInsertValue(cardData.getNumber(), cardData.getMonth(), cardData.getYear(), cardData.getHolder(), cardData.getCvc());
-        tripForm.BuyOperationIsSuccessful();
+        tripForm.assertBuyOperationIsSuccessful();
 
         payments = DbHelper.getPayments();
         credits = DbHelper.getCreditsRequest();
@@ -80,7 +80,7 @@ public class PaymentUiTests {
         tripForm = tripCard.clickPayButton();
         tripForm.insertingValueInForm(cardData.getNumber(), cardData.getMonth(), cardData.getYear(), cardData.getHolder(), cardData.getCvc());
         tripForm.matchesByInsertValue(cardData.getNumber(), cardData.getMonth(), cardData.getYear(), cardData.getHolder(), cardData.getCvc());
-        tripForm.BuyOperationWithErrorNotification();
+        tripForm.assertBuyOperationWithErrorNotification();
 
         payments = DbHelper.getPayments();
         credits = DbHelper.getCreditsRequest();
@@ -137,7 +137,7 @@ public class PaymentUiTests {
     @Story("№2.1.4 Заполнение поля 16 рандомными цифрами, остальные поля заполнены валидно")
     @Severity(SeverityLevel.BLOCKER)
     @Test
-    public void shouldUnsuccessfulWith18DigitsInNumber() {
+    public void shouldUnsuccessfulWith16DigitsInNumber() {
         cardData = DataHelper.getValidApprovedCard();
         var number = DataHelper.generateValidCardNumberWith16Digits();
         var matchesNumber = number;
@@ -145,7 +145,7 @@ public class PaymentUiTests {
         tripForm = tripCard.clickPayButton();
         tripForm.insertingValueInForm(number, cardData.getMonth(), cardData.getYear(), cardData.getHolder(), cardData.getCvc());
         tripForm.matchesByInsertValue(matchesNumber, cardData.getMonth(), cardData.getYear(), cardData.getHolder(), cardData.getCvc());
-        tripForm.BuyOperationWithErrorNotification();
+        tripForm.assertBuyOperationWithErrorNotification();
     }
 
     @Story("№2.1.5 Заполнение поля 16 рандомными символами (не цифрами), остальные поля заполнены валидно")
@@ -187,7 +187,7 @@ public class PaymentUiTests {
         tripForm = tripCard.clickPayButton();
         tripForm.insertingValueInForm(cardData.getNumber(), month, cardData.getYear(), cardData.getHolder(), cardData.getCvc());
         tripForm.matchesByInsertValue(cardData.getNumber(), matchesMonth, cardData.getYear(), cardData.getHolder(), cardData.getCvc());
-        tripForm.BuyOperationIsSuccessful();
+        tripForm.assertBuyOperationIsSuccessful();
     }
 
     @Story("№2.2.3 Заполнение поля 3 цифрами, остальные поля заполнены валидно")
@@ -201,7 +201,7 @@ public class PaymentUiTests {
         tripForm = tripCard.clickPayButton();
         tripForm.insertingValueInForm(cardData.getNumber(), month, cardData.getYear(), cardData.getHolder(), cardData.getCvc());
         tripForm.matchesByInsertValue(cardData.getNumber(), matchesMonth, cardData.getYear(), cardData.getHolder(), cardData.getCvc());
-        tripForm.BuyOperationIsSuccessful();
+        tripForm.assertBuyOperationIsSuccessful();
     }
 
     @Story("№2.2.4 Заполнение поля значением 00, остальные поля заполнены валидно")
@@ -329,7 +329,7 @@ public class PaymentUiTests {
         tripForm = tripCard.clickPayButton();
         tripForm.insertingValueInForm(cardData.getNumber(), cardData.getMonth(), cardData.getYear(), holder, cardData.getCvc());
         tripForm.matchesByInsertValue(cardData.getNumber(), cardData.getMonth(), cardData.getYear(), matchesHolder, cardData.getCvc());
-        tripForm.BuyOperationIsSuccessful();
+        tripForm.assertBuyOperationIsSuccessful();
     }
 
     @Story("№2.4.3 Заполнение поля с пробелами в начале и в конце, остальные поля заполнены валидно")
@@ -343,7 +343,7 @@ public class PaymentUiTests {
         tripForm = tripCard.clickPayButton();
         tripForm.insertingValueInForm(cardData.getNumber(), cardData.getMonth(), cardData.getYear(), holder, cardData.getCvc());
         tripForm.matchesByInsertValue(cardData.getNumber(), cardData.getMonth(), cardData.getYear(), matchesHolder, cardData.getCvc());
-        tripForm.BuyOperationIsSuccessful();
+        tripForm.assertBuyOperationIsSuccessful();
     }
 
     @Story("№2.4.4 Заполнение поля \"Владелец\" с дефисами в начале и в конце, остальные поля заполнены валидно")
@@ -357,7 +357,7 @@ public class PaymentUiTests {
         tripForm = tripCard.clickPayButton();
         tripForm.insertingValueInForm(cardData.getNumber(), cardData.getMonth(), cardData.getYear(), holder, cardData.getCvc());
         tripForm.matchesByInsertValue(cardData.getNumber(), cardData.getMonth(), cardData.getYear(), matchesHolder, cardData.getCvc());
-        tripForm.BuyOperationIsSuccessful();
+        tripForm.assertBuyOperationIsSuccessful();
     }
 
     @Story("№2.4.5 Заполнение поля \"Владелец\" кириллицей, остальные поля заполнены валидно")
@@ -427,7 +427,7 @@ public class PaymentUiTests {
         tripForm = tripCard.clickPayButton();
         tripForm.insertingValueInForm(cardData.getNumber(), cardData.getMonth(), cardData.getYear(), cardData.getHolder(), cvc);
         tripForm.matchesByInsertValue(cardData.getNumber(), cardData.getMonth(), cardData.getYear(), cardData.getHolder(), matchesCvc);
-        tripForm.BuyOperationIsSuccessful();
+        tripForm.assertBuyOperationIsSuccessful();
     }
 
     @Story("№2.5.4/№2.5.5 Заполнение поля \"CVC/CVV\" 3 рандомными буквами/спецсимволами, остальные поля заполнены валидно")
